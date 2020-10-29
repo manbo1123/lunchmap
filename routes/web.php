@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/shops');
 });
+
+Route::resource('/shop', App\Http\Controllers\ShopController::class)->except(['index'])->names([
+    'show' => 'shop.detail',
+    'create' => 'shop.new'
+]);
+Route::get('/shops', [App\Http\Controllers\ShopController::class, 'index'])->name('shop.list');
