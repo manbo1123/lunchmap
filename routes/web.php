@@ -22,3 +22,7 @@ Route::resource('/shop', App\Http\Controllers\ShopController::class)->except(['i
     'create' => 'shop.new'
 ]);
 Route::get('/shops', [App\Http\Controllers\ShopController::class, 'index'])->name('shop.list');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
