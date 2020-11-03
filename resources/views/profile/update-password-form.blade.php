@@ -1,4 +1,4 @@
-<x-jet-form-section submit="updatePassword">
+<x-jet-form-section submit="updatePassword">   <!-- ダッシュボードページの PW更新フォームの部分テンプレート -->
     <x-slot name="title">
         {{ __('Update Password') }}
     </x-slot>
@@ -8,7 +8,7 @@
     </x-slot>
 
     <x-slot name="form">
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-6 sm:col-span-4">  <!-- PW更新フォーム -->
             <x-jet-label for="current_password" value="{{ __('Current Password') }}" />
             <x-jet-input id="current_password" type="password" class="mt-1 block w-full" wire:model.defer="state.current_password" autocomplete="current-password" />
             <x-jet-input-error for="current_password" class="mt-2" />
@@ -27,7 +27,7 @@
         </div>
     </x-slot>
 
-    <x-slot name="actions">
+    <x-slot name="actions">        <!-- PW更新ボタン -->
         <x-jet-action-message class="mr-3" on="saved">
             {{ __('Saved.') }}
         </x-jet-action-message>

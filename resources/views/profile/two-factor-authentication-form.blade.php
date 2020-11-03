@@ -1,4 +1,4 @@
-<x-jet-action-section>
+<x-jet-action-section>   <!-- ダッシュボードページの ２段階認証設定の部分テンプレート -->
     <x-slot name="title">
         {{ __('Two Factor Authentication') }}
     </x-slot>

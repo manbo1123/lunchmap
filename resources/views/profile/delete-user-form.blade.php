@@ -1,4 +1,4 @@
-<x-jet-action-section>
+<x-jet-action-section>   <!-- ダッシュボードページの アカウント削除の部分テンプレート -->
     <x-slot name="title">
         {{ __('Delete Account') }}
     </x-slot>

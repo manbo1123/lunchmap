@@ -1,4 +1,4 @@
-<x-jet-form-section submit="updateProfileInformation">
+<x-jet-form-section submit="updateProfileInformation">   <!-- ダッシュボードページの ユーザー名、email更新フォームの部分テンプレート -->
     <x-slot name="title">
         {{ __('Profile Information') }}
     </x-slot>

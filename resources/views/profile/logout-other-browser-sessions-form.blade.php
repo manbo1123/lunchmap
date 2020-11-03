@@ -1,4 +1,4 @@
-<x-jet-action-section>
+<x-jet-action-section>   <!-- ダッシュボードページの の部分テンプレート -->
     <x-slot name="title">
         {{ __('Browser Sessions') }}
     </x-slot>

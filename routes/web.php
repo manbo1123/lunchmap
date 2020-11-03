@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\ShopController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,11 +17,11 @@ Route::get('/', function () {
     return redirect('/shops');
 });
 
-Route::resource('/shop', App\Http\Controllers\ShopController::class)->except(['index'])->names([
+Route::resource('/shop', ShopController::class)->except(['index'])->names([
     'show' => 'shop.detail',
     'create' => 'shop.new'
 ]);
-Route::get('/shops', [App\Http\Controllers\ShopController::class, 'index'])->name('shop.list');
+Route::get('/shops', [ShopController::class, 'index'])->name('shop.list');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

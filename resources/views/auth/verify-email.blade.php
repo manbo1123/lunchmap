@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-jet-authentication-card>
-        <x-slot name="logo">
+        <x-slot name="logo">   <!-- ロゴ表示（ / へのリンク） -->
             <x-jet-authentication-card-logo />
         </x-slot>
 
@@ -18,13 +18,13 @@
             <form method="POST" action="{{ route('verification.send') }}">
                 @csrf
 
-                <div>
+                <div>      <!--  メール再送ボタン -->
                     <x-jet-button type="submit">
                         {{ __('Resend Verification Email') }}
                     </x-jet-button>
                 </div>
             </form>
-
+            <!--  ログアウトボタン -->
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
 
