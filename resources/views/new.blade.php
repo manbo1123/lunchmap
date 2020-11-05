@@ -19,12 +19,13 @@
       {{ Form::select('category_id', $categories) }}
     </div>
 
-    <div class='form-group'>
-      {{ Form::submit('登録する', ['class' => 'btn btn-outline-primary']) }}
+    <div class="d-flex">
+      <div class='form-group px-2'>
+        {{ Form::submit('登録', ['class' => 'btn btn-primary']) }}
+      </div>
+      <div class="px-2">
+        <a href='{{ route("shop.list") }}' class="btn btn-outline-secondary">一覧にもどる</a>
+      </div>
     </div>
   {{ Form::close() }}
-
-  <div>
-    <a href='{{ route("shop.list") }}'>一覧に戻る</a>
-  </div>
 @endsection

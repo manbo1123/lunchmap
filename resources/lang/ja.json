@@ -94,6 +94,10 @@
     "Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account." : "アカウントを削除してもよろしいですか？アカウントを削除すると、全データが削除されます。アカウントを削除するには、パスワードを入力してください。",
     "Dashboard" : "ダッシュボード",
     "Manage Account" : "アカウント管理",
-    "Profile" : "プロフィール情報"
+    "Profile" : "プロフィール情報",
+    "API tokens allow third-party services to authenticate with our application on your behalf." : "APIトークンを発行できます。",
+    "Photo" : "アイコン画像",
+    "Select A New Photo" : "画像を選ぶ",
+    "Remove Photo" : "画像を削除"
 
 }
