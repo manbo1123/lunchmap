@@ -148,6 +148,7 @@ return [
 
     'attributes' => [
         'name' => '名前',
+        'birth' => '生年月日',
         //'email' => 'メールアドレス',
         //'password' => 'パスワード',
         //"password_confirmation" => "パスワード(確認用)",
