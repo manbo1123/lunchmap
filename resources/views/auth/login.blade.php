@@ -12,7 +12,12 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        @if (Request::is('admin/login'))
+            <p class="text-center text-green-600">管理者用</p>
+        @endif
+
+        <!-- $guardがセットされてるか？で送信先を条件分岐 -->
+        <form method="POST" action="{{ isset($guard) ? route('admin.login') : route('login') }}">
             @csrf
 
             <div>   <!-- メールアドレス入力フォーム -->
@@ -33,12 +38,19 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))      <!-- PW忘れた？リンク（リンク先：/forgot-password） -->
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+                <div class="text-right">
+                    @if (Route::has('password.request'))      <!-- PW忘れた？リンク（リンク先：/forgot-password） -->
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                            {{ __('Forgot your password?') }}
+                        </a><br>
+                    @endif
 
+                    @if (!Request::is('admin/login'))     <!-- 管理者ログインページへのリンク -->
+                        <a href='{{ route("admin.login") }}' class="underline text-sm text-gray-600 test-right">管理者はこちら</a>
+                    @else
+                        <a href='{{ route("login") }}' class="underline text-sm text-gray-600 test-right">管理者でない方</a>
+                    @endif
+                </div>
                 <x-jet-button class="ml-4">   <!-- ログインボタン -->
                     {{ __('Login') }}
                 </x-jet-button>
