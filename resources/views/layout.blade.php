@@ -20,48 +20,71 @@
           <i class="fas fa-map-pin"></i>
           <span class='h5'>Lunch Map</span>
         </a>
-        @auth
-          <span class="text-white-50">こんにちは、{{ Auth::user()->name }} さん</span>
+
+        @if (Auth::guard('admin')->check())
+          <span class="text-white-50">¡Hola! {{Auth::guard('admin')->user()->name}} さん</span>
+        @elseif (Auth::guard('web')->check())
+          <span class="text-white-50">Hello! {{ Auth::user()->name }} さん</span>
         @endif
       </div>
       <div>
         @if (Route::has('login'))
           <div class="hidden fixed top-0 right-0 py-1 sm:block">
-            @auth
               <div class="d-flex">
-                <!-- ダッシュボード
-                <a href="{{ url('/dashboard') }}" class="text-sm py-2">ダッシュボード</a>   -->
+                @auth('web')
+                  <!-- ダッシュボード
+                  <a href="{{ url('/dashboard') }}" class="text-sm py-2">ダッシュボード</a>   -->
 
-                <!-- プロフィール -->
-                <x-jet-dropdown-link href="{{ route('profile.show') }}" class="text-info">
-                  {{ __('Profile') }}
-                </x-jet-dropdown-link>
-
-                <!--  ログアウト -->
-                <form method="POST" action="{{ route('logout') }}" class="py-2">
-                  @csrf
-                  <x-jet-dropdown-link href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                    this.closest('form').submit();" class="text-info">
-                    {{ __('Logout') }}
+                  <!-- プロフィール -->
+                  <x-jet-dropdown-link href="{{ route('profile.show') }}" class="text-info">
+                    {{ __('Profile') }}
                   </x-jet-dropdown-link>
-                </form>
-                
-              </div>
-            @else
-              <div class="py-2">
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline text-info">ログイン</a>
-                @if (Route::has('register'))
-                  <a href="{{ route('register') }}" class="mx-4 text-sm text-gray-700 underline text-info">アカウント作成</a>
+                @endauth
+
+                @auth('admin') 
+                  <!-- 管理者用リンク -->
+                  <x-jet-dropdown-link href="{{ route('admin.dashboard') }}" class="text-info">
+                    <span>管理者</spna>
+                    <i class="fas fa-user-lock fa-lg"></i>
+                  </x-jet-dropdown-link>
+                @endauth
+
+                @if (Auth::guard('admin')->check() || Auth::guard('web')->check())
+                  <!-- ログイン中のみ、ログアウト を表示 -->
+                  <form method="POST" action="{{ route('logout') }}" class="py-2">
+                    @csrf
+                    <x-jet-dropdown-link href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                      this.closest('form').submit();" class="text-info">
+                      {{ __('Logout') }}
+                    </x-jet-dropdown-link>
+                  </form>
+                @else    <!-- 未ログイン時は、ログインボタン、新規登録ボタンを表示 -->
+                  <div class="py-2">
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline text-info">ログイン</a>
+                    @if (Route::has('register'))
+                      <a href="{{ route('register') }}" class="mx-4 text-sm text-gray-700 underline text-info">アカウント作成</a>
+                    @endif
+                  </div>
                 @endif
               </div>
-            @endif
           </div>
         @endif
       </div>
     </nav>
 
     <div class = 'container'>
+      <!-- フラッシュメッセージ -->
+      @if (session('flash_message'))    <!-- ログイン中に、ログインページに行こうとした時 -->
+      <p class="alert alert-danger mb-2">
+          {{ session('flash_message') }}
+      </p>
+      @elseif (session('success_message'))    <!-- 管理者としてログインした時 -->
+        <p class="alert alert-success mb-2">
+            {{ session('success_message') }}
+        </p>
+      @endif
+
       @yield('content')
     </div>
   </body>

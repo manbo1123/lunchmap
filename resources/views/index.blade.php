@@ -3,7 +3,7 @@
 @section('content')
   <div class="d-flex justify-content-between">
     <h1>お店一覧</h1>
-    @auth   <!-- ログイン時のみ登録ボタンを表示 -->
+    @auth('web')   <!-- ユーザーログイン時のみ登録ボタンを表示 -->
       <div>
         <a href='{{ route("shop.new") }}', class="btn btn-outline-primary">お店を登録</a>
       </div>
@@ -14,8 +14,8 @@
     <tr>
       <th>カテゴリー</th>
       <th>店名</th>
-      <th>住所</th>
-      <th>投稿者</th>
+      <th><i class="fas fa-map-marked-alt fa-lg"></i></th>
+      <th><i class="fas fa-user fa-lg"></i></th>
     </tr>
     
     @foreach ($shops as $shop)

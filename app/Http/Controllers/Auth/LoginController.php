@@ -48,6 +48,7 @@ class LoginController extends Controller{
      */
     public function store(LoginRequest $request){
         return $this->loginPipeline($request)->then(function ($request) {
+            session()->flash('success_message', '管理者としてログインしました');
             return app(AdminLoginResponse::class);
         });
     }

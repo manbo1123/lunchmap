@@ -46,7 +46,7 @@ return [
     |
     */
 
-    'username' => 'email',
+    'username' => 'email',       // ログインで使う情報
 
     'email' => 'email',
 
@@ -87,7 +87,7 @@ return [
     |
     */
 
-    'limiters' => [
+    'limiters' => [       // ログイン失敗許容回数
         'login' => null,
     ],
 
@@ -103,12 +103,12 @@ return [
     */
 
     'features' => [
-        Features::registration(),
-        Features::resetPasswords(),
-        // Features::emailVerification(),
-        Features::updateProfileInformation(),
-        Features::updatePasswords(),
-        Features::twoFactorAuthentication([
+        Features::registration(),              // 登録機能
+        Features::resetPasswords(),            // PWリセット
+        // Features::emailVerification(),      // メール認証
+        Features::updateProfileInformation(),  // 登録情報の更新
+        Features::updatePasswords(),           // PW更新
+        Features::twoFactorAuthentication([    // 2段階認証
             'confirmPassword' => true,
         ]),
     ],

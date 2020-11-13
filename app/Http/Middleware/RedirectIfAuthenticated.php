@@ -17,15 +17,21 @@ class RedirectIfAuthenticated
      * @param  string|null  ...$guards
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, ...$guards)
+    //public function handle(Request $request, Closure $next, ...$guards)
+    public function handle(Request $request, Closure $next, $guard=null)
     {
-        $guards = empty($guards) ? [null] : $guards;
+        // $guards = empty($guards) ? [null] : $guards;
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+        //foreach ($guards as $guard) {
+            //if (Auth::guard($guard)->check() && $guard == 'admin') {
+            if (Auth::guard('admin')->check()) {
+                return redirect(RouteServiceProvider::ADMIN_HOME)
+                        ->with('flash_message', '⚠️ 管理者としてログイン中です。ログアウトが必要です。');
+            } elseif (Auth::guard('web')->check()) {
+                return redirect(RouteServiceProvider::HOME)
+                        ->with('flash_message', '⚠️ ログイン中です。ログアウトが必要です。');
             }
-        }
+        //}
 
         return $next($request);
     }
