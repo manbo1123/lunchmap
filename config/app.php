@@ -178,6 +178,7 @@ return [
         App\Providers\JetstreamServiceProvider::class,
 
         App\Providers\AdminLoginServiceProvider::class,     // Admin のログイン
+        \SocialiteProviders\Manager\ServiceProvider::class, // SNS認証
     ],
 
     /*

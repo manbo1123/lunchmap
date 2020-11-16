@@ -98,6 +98,7 @@
     "API tokens allow third-party services to authenticate with our application on your behalf." : "APIトークンを発行できます。",
     "Photo" : "アイコン画像",
     "Select A New Photo" : "画像を選ぶ",
-    "Remove Photo" : "画像を削除"
+    "Remove Photo" : "画像を削除",
 
+    "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another." : "サインアップしていただきありがとうございます！\nご登録のメールアドレスへ認証リンクを送信しましたので、クリックして認証を完了してください\nメールが届かない場合は、再送いたします。"
 }

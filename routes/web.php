@@ -41,3 +41,9 @@ Route::prefix('admin')->group(function () {
         Route::get('logout', [LoginController::class, 'destroy'])->name('admin.logout');
     });
 });
+
+// SNS認証
+Route::prefix('login/{provider}')->where(['provider' => '(line|twitter|facebook|google|yahoo)'])->group(function(){
+    Route::get('/', [App\Http\Controllers\LoginController::class, 'redirectToProvider'])->name('social_login.redirect');
+    Route::get('/callback', [App\Http\Controllers\LoginController::class, 'handleProviderCallback'])->name('social_login.callback');
+});

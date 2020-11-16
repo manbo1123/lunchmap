@@ -56,5 +56,37 @@
                 </x-jet-button>
             </div>
         </form>
+        <hr class="py-1 ">        <!-- SNS認証 -->
+        <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between py-1"> 
+                <div class="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                    <a href="{{ route('social_login.redirect', 'twitter') }}">
+                        <i class="fab fa-twitter"></i>
+                        Twitter でログイン
+                    </a>
+                </div>
+                <div class="inline-flex items-center px-4 py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                    <a href="{{ route('social_login.redirect', 'facebook') }}">
+                        <i class="fab fa-facebook-f"></i>
+                        Facebook でログイン
+                    </a>
+                </div>
+            </div>
+            <!--
+            <div class="d-flex justify-content-between">
+                <div class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                    <a href="{{ route('social_login.redirect', 'google') }}">
+                        <i class="fab fa-google"></i>
+                        Google でログイン
+                    </a>
+                </div>
+                <div class="inline-flex items-center px-4 py-2 bg-yellow-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-300 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                    <a href="{{ route('social_login.redirect', 'yahoo') }}">
+                        <i class="fab fa-yahoo"></i>
+                        Yahoo でログイン
+                    </a>
+                </div>
+            </div> -->
+        </div>
     </x-jet-authentication-card>
 </x-guest-layout>

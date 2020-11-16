@@ -85,6 +85,11 @@
         </p>
       @endif
 
+      @if (session('oauth_login'))   <!-- SNS認証 -->
+        <p class="alert alert-success mb-2">
+            {{ session('oauth_login') }}
+        </p>
+      @endif
       @yield('content')
     </div>
   </body>
