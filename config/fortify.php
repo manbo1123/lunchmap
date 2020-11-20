@@ -105,7 +105,7 @@ return [
     'features' => [
         Features::registration(),              // 登録機能
         Features::resetPasswords(),            // PWリセット
-        // Features::emailVerification(),      // メール認証
+        Features::emailVerification(),         // メール認証
         Features::updateProfileInformation(),  // 登録情報の更新
         Features::updatePasswords(),           // PW更新
         Features::twoFactorAuthentication([    // 2段階認証

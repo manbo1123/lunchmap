@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+
 use \App\Http\Controllers\ShopController; 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AdminDashboardController;
@@ -47,3 +50,18 @@ Route::prefix('login/{provider}')->where(['provider' => '(line|twitter|facebook|
     Route::get('/', [App\Http\Controllers\LoginController::class, 'redirectToProvider'])->name('social_login.redirect');
     Route::get('/callback', [App\Http\Controllers\LoginController::class, 'handleProviderCallback'])->name('social_login.callback');
 });
+
+// 確認メール送信画面
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware(['auth'])->name('verification.notice');
+// 確認リンクをクリック時
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/shops');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+// 確認メールの再送信
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('status', 'verification-link-sent');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
