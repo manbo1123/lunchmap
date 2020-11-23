@@ -9,12 +9,24 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
+        "doctrine/dbal": "^2.12",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "laravel-lang/lang": "~7.0",
+        "laravel/fortify": "^1.7",
         "laravel/framework": "^8.0",
+        "laravel/jetstream": "^1.5",
+        "laravel/sanctum": "^2.7",
+        "laravel/socialite": "^5.1",
         "laravel/tinker": "^2.0",
-        "laravelcollective/html": "^6.2"
+        "laravelcollective/html": "^6.2",
+        "livewire/livewire": "^2.0",
+        "socialiteproviders/facebook": "^4.0",
+        "socialiteproviders/google": "^4.0",
+        "socialiteproviders/line": "^4.0",
+        "socialiteproviders/twitter": "^4.0",
+        "socialiteproviders/yahoo": "^4.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

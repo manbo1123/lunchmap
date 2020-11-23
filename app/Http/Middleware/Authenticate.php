@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
-
+//use Illuminate\Support\Str;                   // URLを使う場合
 class Authenticate extends Middleware
 {
     /**
@@ -15,6 +15,12 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
+            if ($request->is('admin/*')) {
+            //if ( Route::is('admin.*') ) {   // ルーティングを使う場合
+            //$uri = $request->path();        // URLを使う場合
+            //if (Str::startsWith($uri, ['admin/'])) {
+                return route('admin.login');
+            }
             return route('login');
         }
     }
