@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use App\Models\Category;   // Categoryモデルの使用を宣言
 use Illuminate\Http\Request;
+use App\Enums\Status;
 
 class ShopController extends Controller
 {
@@ -41,9 +42,11 @@ class ShopController extends Controller
     public function store(Request $request){
         $shop = new Shop();
         $user = \Auth::user();
+        $status = Status::fromValue(Status::Registering);
 
         $shop -> name = request('name');
         $shop -> address = request('address');
+        $shop -> status = $status;
         $shop -> category_id = request('category_id');
         $shop -> user_id = $user->id;
         $shop -> save();
@@ -101,9 +104,13 @@ class ShopController extends Controller
      * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
+    public function destroy($id){   // 削除申請（Adminが削除承認までレコードは消さない）
         $shop = Shop::find($id);
-        $shop -> delete();
+        $status = Status::fromValue(Status::Deleting);
+
+        $shop -> status = $status;
+        $shop -> save();
+        //$shop -> delete();
         return redirect('/shops');
     }
 }

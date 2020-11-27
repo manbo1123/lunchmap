@@ -2,6 +2,7 @@
 
 @section('content')
   <h1>お店を登録</h1>
+  <span>{{\App\Enums\Status::getStatus('0')}}</span>
 
   {{ Form::open(['route' => 'shop.store']) }}
     <div class='form-group'>

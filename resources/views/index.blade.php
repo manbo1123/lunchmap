@@ -12,6 +12,7 @@
 
   <table class='table table-striped table-hover'>
     <tr>
+      <th></th>
       <th>カテゴリー</th>
       <th>店名</th>
       <th><i class="fas fa-map-marked-alt fa-lg"></i></th>
@@ -19,7 +20,19 @@
     </tr>
     
     @foreach ($shops as $shop)
+      @if (!($shop -> status == 0) && !($shop -> user_id == Auth::id()) && !(Auth::guard('admin')->user()))
+        @continue
+      @endif
+
       <tr>
+        <td>
+            @if ( !$shop -> status == 0  && $shop -> user_id == Auth::id() )
+              <p>承認待ち</p>
+            @elseif ( !$shop -> status == 0  && Auth::guard('admin')->user() )
+              <a href = '{{ route("admin.dashboard") }}', class='btn btn-sm btn-outline-primary'>要承認</a>
+            @endif
+        </td>
+
         <td>{{ $shop -> category -> name }}</td>
 
         <td>
