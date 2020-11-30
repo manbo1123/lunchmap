@@ -26,5 +26,34 @@
             </div>
         </div>
     </div>
+
+    <table class='table table-striped table-hover'>
+    <tr>
+      <th>店名</th>
+      <th>申請ユーザー</th>
+      <th>承認</th>
+    </tr>
+    
+    @foreach ($shops as $shop)
+      <tr>
+        <td>
+          <a href='{{ route("shop.detail", ["shop"=>$shop->id]) }}'>{{ $shop->name }}</a>
+        </td>
+
+        <td>{{ $shop -> user -> name }}</td>
+        <td>
+          @if ($shop->status == "1")
+            {{ Form::open(['method' => 'post', 'route' => ['admin.accept', $shop->id] ]) }}
+              {{ Form::submit('登録', ['class' => 'btn btn-sm btn-outline-primary']) }}
+            {{ Form::close() }}
+          @elseif ($shop->status == "2")
+            {{ Form::open(['method' => 'delete', 'route' => ['admin.destroy', $shop->id] ]) }}
+              {{ Form::submit('削除', ['class' => 'btn btn-sm btn-outline-danger']) }}
+            {{ Form::close() }}
+          @endif
+        </td>
+      <tr>
+    @endforeach
+  </table>
 @endsection
 
