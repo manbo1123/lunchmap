@@ -2,6 +2,8 @@
 
 @section('content')
   <h1>{{ $shop -> name }}</h1>
+  <span>{{\App\Enums\Status::getStatus($shop -> status)}}</span>
+
   <div>
     <p>{{ $shop -> category -> name }}</p>
     <p>{{ $shop -> address }}</p>

@@ -44,6 +44,8 @@ Route::prefix('admin')->group(function () {
     // 認証が必要なルーティング
     Route::middleware('auth:admin')->group(function () {
         Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+        Route::post('dashboard/{shop_id}', [AdminDashboardController::class, 'accept'])->name('admin.accept');
+        Route::delete('dashboard/{shop_id}', [AdminDashboardController::class, 'destroy'])->name('admin.destroy');
         Route::get('/', function () { return redirect('/admin/dashboard'); });
         Route::get('logout', [LoginController::class, 'destroy'])->name('admin.logout');
     });
